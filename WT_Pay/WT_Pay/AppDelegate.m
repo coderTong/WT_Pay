@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "WTPayManager.h"
+
 
 @interface AppDelegate ()
 
@@ -40,6 +42,58 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic){
+                                                      [[WTPayManager shareWTPayManager] handleAlipayResponse:resultDic];
+                                                      
+                                                  }];
+        return YES;
+    }
+    else if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回 authCode
+        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+            [[WTPayManager shareWTPayManager] handleAlipayResponse:resultDic];
+        }];
+        return YES;
+    }else if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.tencent.xin"]){
+        
+        return [WXApi handleOpenURL:url delegate:[WTPayManager shareWTPayManager]];
+        
+    }
+
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url
+                                                  standbyCallback:^(NSDictionary *resultDic){
+                                                      [[WTPayManager shareWTPayManager] handleAlipayResponse:resultDic];
+                                                      
+                                                  }];
+        return YES;
+    }
+    else if ([url.host isEqualToString:@"platformapi"]){//支付宝钱包快登授权返回 authCode
+        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
+            
+            [[WTPayManager shareWTPayManager] handleAlipayResponse:resultDic];
+        }];
+        return YES;
+    }else if ([sourceApplication isEqualToString:@"com.tencent.xin"]){
+        
+        return [WXApi handleOpenURL:url delegate:[WTPayManager shareWTPayManager]];
+        
+    }
+
+    return YES;
 }
 
 @end

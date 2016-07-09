@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,7 +16,39 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpd-iQ-uer">
+                                <rect key="frame" x="200" y="127" width="200" height="55"/>
+                                <color key="backgroundColor" red="1" green="0.70128195069999999" blue="0.52472054810000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MUh-GN-Rdb"/>
+                                    <constraint firstAttribute="height" constant="55" id="aEr-jK-OFm"/>
+                                </constraints>
+                                <state key="normal" title="支付宝支付"/>
+                                <connections>
+                                    <action selector="alipayClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Efb-GY-WYS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMA-Pp-SmQ">
+                                <rect key="frame" x="200" y="272" width="200" height="55"/>
+                                <color key="backgroundColor" red="1" green="0.70128195069999999" blue="0.52472054810000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Q1l-nU-vxh"/>
+                                    <constraint firstAttribute="height" constant="55" id="v1A-kx-Zbf"/>
+                                </constraints>
+                                <state key="normal" title="微信支付"/>
+                                <connections>
+                                    <action selector="weixinPayClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eA8-mq-3V4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cpd-iQ-uer" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="107" id="LFu-zW-LXR"/>
+                            <constraint firstItem="RMA-Pp-SmQ" firstAttribute="top" secondItem="cpd-iQ-uer" secondAttribute="bottom" constant="90" id="Rrn-FJ-l0h"/>
+                            <constraint firstItem="cpd-iQ-uer" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UAH-WE-vOH"/>
+                            <constraint firstItem="RMA-Pp-SmQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bUo-PI-Fmq"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
